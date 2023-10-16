@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meu Site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-image: url('static/fundo_branco.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            text-align: right;
+            padding: 20px;
+        }
+
+        .logo {
+            width: 180px;
+            height: 60px;
+        }
+
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            background-color: #e1e3e1;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: black;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="password"] {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-button {
+            background-color: #c90f02;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background .5s;
+        }
+
+        .submit-button:hover {
+        background-color: #ed1405;
+        }
+
+        .notificacao {
+            display: none;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            z-index: 1;
+        }
+
+        /* Estilo da notificação de sucesso */
+        .notificacao.sucesso {
+            background-color: #4CAF50;
+        }
+
+        /* Estilo da notificação de erro */
+        .notificacao.erro {
+            background-color: #c90f02;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img class="logo" src="static/Imagem1.png" alt="Logo">
+    </div>
+
+    <div class="container">
+
+        <h1 style="color: black;">Tabela Pessoa</h1>
+
+        {% if mensagem %}
+        <div class="notificacao {{ 'sucesso' if mensagem == 'Dados adicionados com sucesso!!' else 'erro' }}" id="notificacao">{{ mensagem }}</div>
+        {% endif %}
+
+        <form method="POST" action="/enviar">
+
+            <div class="form-group">
+                <label for="Numero_pessoa">Número pessoa:</label>
+                <input type="number" name="Numero_pessoa" id="Numero_pessoa" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Nome_pessoa">Nome da pessoa:</label>
+                <input type="text" name="Nome_pessoa" id="Nome_pessoa" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Nome_empresa">Nome da empresa:</label>
+                <input type="text" name="Nome_empresa" id="Nome_empresa" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+               <label for="Telefone_celular">Telefone celular:</label>
+               <input type="text" name="Telefone_celular" id="Telefone_celular" required>
+            </div>
+
+            <div class="form-group">
+               <label for="Telefone_fixo">Telefone fixo:</label>
+               <input type="text" name="Telefone_fixo" id="Telefone_fixo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="funcao">Função:</label>
+                <input type="text" name="funcao" id="funcao" required>
+            </div>
+
+            <div class="form-group">
+                <label for="observacoes">Observações:</label>
+                <input type="text" name="observacoes" id="observacoes" required>
+            </div>
+
+            <button type="submit" class="submit-button">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript para mostrar a notificação
+        document.getElementById("notificacao").style.display = "block";
+        setTimeout(function(){
+            document.getElementById("notificacao").style.display = "none";
+        }, 5000); // A notificação desaparecerá após 3 segundos
+    </script>
+
+</body>
+</html>

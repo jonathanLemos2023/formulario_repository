@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulário de Contato</title>
+</head>
+<body>
+    <h1>Formulário de Contato</h1>
+
+    <form method="POST" action="/enviar">
+        <label for="mensagem">Mensagem:</label>
+        <input type="text" name="mensagem" id="mensagem" required>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <h2>Mensagens anteriores:</h2>
+    <ul>
+        {% for mensagem in mensagens %}
+            <li>{{ mensagem }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

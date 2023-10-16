@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meu Site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-image: url('static/fundo_branco.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            text-align: right;
+            padding: 20px;
+        }
+
+        .logo {
+            width: 180px;
+            height: 60px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #e1e3e1;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            color: black;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #c4c2c2;
+        }
+
+        .button {
+            background-color: #c90f02;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background .5s;
+        }
+
+        .button:hover {
+        background-color: #ed1405;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img class="logo" src="static/Imagem1.png" alt="Logo">
+    </div>
+    <div class="container">
+        <h1 style="color: black;">Tabela Pessoa</h1>
+
+        <a href="{{ url_for('formulario') }}" class="button">Adicionar Dados</a>
+
+        <table>
+            <thead>
+                <tr>
+                    {% for column in column_names %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+            <tr>
+                {% for value in row %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+                <!-- Adicione mais linhas conforme necessário -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
